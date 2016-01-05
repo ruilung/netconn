@@ -84,7 +84,7 @@ if __name__ == '__main__':
         print 'countdown is %d'%(c)
 
 
-    astr="\nListen   Program name                                           RemoteAddr  Count\n--------------------------------------------------------------------------------\n"
+    astr="\nListen   Program_name                                           RemoteAddr  Count\n--------------------------------------------------------------------------------\n"
     print astr
     f.write(astr)
     for nd in ndict:
