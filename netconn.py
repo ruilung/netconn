@@ -15,14 +15,16 @@ def netlisten():
         except psutil.Error:
             pass
     netlist=[]
-    for c in psutil.net_connections(kind='inet4'): #only receive ipv4 info
+    for c in psutil.net_connections(kind='inet'): #only receive ipv4 info
         if c.status=='LISTEN':
             netlist.append([  ":"+str(c.laddr[1]), proc_names.get(c.pid, '?')])
-    return netlist
+    print type(netlist)
+    netlist=set( map(tuple,netlist) )
+    return sorted(netlist)
 
 def netestablish():
     estblist=[]
-    for c in psutil.net_connections(kind='inet4'):
+    for c in psutil.net_connections(kind='inet'):
         if c.status <> 'LISTEN' and c.raddr:
             estblist.append([  ":"+str(c.laddr[1]), c.raddr[0] ])
     return estblist
@@ -49,6 +51,7 @@ if __name__ == '__main__':
 
 
     nlist= netlisten()
+
     timelist=[]
     ndict={}
 
