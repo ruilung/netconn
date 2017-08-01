@@ -2,6 +2,7 @@ import time
 import sys
 import psutil
 import socket
+import json
 
 def netlisten():
 # get listen port and listen program  and return it as a list
@@ -101,7 +102,9 @@ if __name__ == '__main__':
         s= "%-8s %-54s %-12s %-4s" %(port,prog,raddr,rcount)
         print s
         f.write(s+"\n")
+    f.close()
 
 
-
+    f=open(filename+".json","w")
+    f.write(json.dumps(ndict))
     f.close()
